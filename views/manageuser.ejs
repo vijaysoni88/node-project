@@ -1,0 +1,48 @@
+<% include adminheader %>
+<main id="main" class="main">
+    <div class="container">
+        <h1>Manage Users</h1>
+        <!-- <%= result%> -->
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>E-Mail</th>
+                    <th>Status</th>
+                    <th>Role</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for(let row of result) { %>
+                    <tr>
+                        <td><%= row._id %></td>
+                        <td><%= row.name %></td>
+                        <td><%= row.email %></td>
+                        <td><%= row.status %></td>
+                        <td><%= row.role %></td>
+                        <td class="text-center">
+                            
+                            <% if(row.status==1) { %>
+                                <a href="/admin/manageuserstatus?status=<%=row.status%>&&userid=<%= row._id%>&&action=update" class="btn btn-success text-white">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                            <% } %>
+                            <% if(row.status==0) { %>
+                                <a href="/admin/manageuserstatus?status=<%=row.status%>&&userid=<%= row._id%>&&action=update" class="btn btn-warning text-white">
+                                    <i class="fa fa-eye-slash"></i>
+                                </a>
+                               
+                            <%}%>
+                            <a href="/admin/manageuserstatus?status=<%=row.status%>&&userid=<%= row._id%>&&action=delete" class="btn btn-danger text-white">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</main>
+<% include footer %>

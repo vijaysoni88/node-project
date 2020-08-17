@@ -1,0 +1,40 @@
+<% include header %>
+
+<section id="contact">
+  <div class="container mt-5">
+
+    <div class="section-header mt-5">
+
+    </div>
+
+    <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+
+      <div class="col-lg-4 offset-lg-4 shadow py-5 px-4 rounded-md border border-primary border-right-0 border-bottom-0 border-left-0">
+        <b class="text-warning"><%= msg %></b>
+        <h5 class="text-primary font-weight-bold">Login</h5>
+        <div class="form">
+          <form method="POST" action="">
+            <div class="form-group">
+              <label for="">User Name<span class="text-danger">*</span></label>
+              <input type="email" name="email" class="form-control" placeholder="Your Email">
+            </div>
+            <div class="form-group">
+              <label for="">Password<span class="text-danger">*</span></label>
+              <input type="password" name="password" class="form-control" placeholder="Your password">
+            </div>
+            <div class="text-right">
+              <button id="myWish" type="submit" class="ml-auto btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+<script>
+
+  
+</script>
+<% include footer %>

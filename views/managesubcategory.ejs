@@ -1,0 +1,55 @@
+<script>
+    function fetchcategory(){
+      var xhttp = new XMLHttpRequest()
+      xhttp.open('GET', 'http://localhost:3000/admin/fetchcategaries', true)
+      xhttp.send()
+
+      xhttp.onreadystatechange = function(){
+        if(true){
+          clist=JSON.parse(xhttp.responseText)
+          console.log('cghdkggggggggggggggggg dyjddfdfdfdf ')
+          console.log(clist)
+        }
+      }
+    }
+</script>
+<% include adminheader %>
+<section id="contact">
+    <div class="container mt-5">
+      <div class="section-header mt-5 pb-2">
+        <h3>Add Sub Category</h3>
+      </div>
+      <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+        <div class="col-lg-6 offset-lg-3 shadow p-5">
+            <b class="text-warning"><%= msg%></b>
+            <form method="POST" action="" enctype="multipart/form-data">
+              <div class="form-group">
+                <label for="catnm">Category Name</label>
+                <select class="form-control" name="catnm" id="">
+                    <option value="0">Select Category</option>
+                    <% for(let row of categories) { %>
+                      <option value="<%= row.catnm%>"><%= row.catnm%></option>
+                    <%}%>
+                </select>
+              </div>
+            
+              <div class="form-group">
+                <label for="catnm">Sub Category Name</label>
+                <input type="text" name="scatnm" class="form-control" placeholder="Select Subcategory">
+              </div>
+              <div class="form-group">
+                <label for="caticon">Category Icon</label>
+                <input type="file" name="scaticon" class="form-control" >
+              </div>
+             <div class="text-right">
+              <button type="submit" class="btn btn-primary">Add Category</button>
+             </div>
+            </form>
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+  </section>
+<% include footer %>

@@ -1,0 +1,57 @@
+<%include header%>
+
+
+<!--==========================
+    Intro Section
+  ============================-->
+<section id="intro" class="clearfix">
+  <div class="container">
+
+    <div class="intro-img">
+      <img src="img/intro-img.svg" alt="" class="img-fluid">
+    </div>
+
+    <div class="intro-info">
+      <h2>We provide <span>solutions</span> for your business!</h2>
+      <div>
+        <a href="#about" class="btn-get-started scrollto">Get Started</a>
+        <a href="#services" class="btn-services scrollto">Our Services</a>
+      </div>
+    </div>
+
+  </div>
+</section><!-- #intro -->
+
+<main id="main">
+  <!--==========================
+      Services Section
+    ============================-->
+  <section id="services" class="section-bg">
+    <div class="container">
+
+      <header class="section-header">
+        <h3>Services Category</h3>
+        <p>Laudem latine persequeris id sed, ex fabulas delectus quo. No vel partiendo abhorreant vituperatoribus.</p>
+      </header>
+     
+     
+        <div class="row"> 
+          <% for(let row of clist) { %> 
+            <div class="col-md-4 wow bounceInUp" data-wow-duration="1.4s">
+              <a href="/showsubcategory?catnm=<%= row.catnm%>">
+                <div class="box">
+                  <div class="icon">
+                    <img class="img-fluid w-100" src="uploads/categoryicons/<%= row.caticonnm %>" alt="">
+                  </div>
+                  <h4 class="title text-center"><a href=""><%= row.catnm %></a></h4>
+                </div>
+              </a>
+            </div>
+          <%}%>
+        </div>
+
+    </div>
+  </section><!-- #services -->
+</main>
+
+<%include footer%>

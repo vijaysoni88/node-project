@@ -1,0 +1,161 @@
+<% include userheader %>
+
+<script>
+function fetchsubcat(catnm)
+{
+    var xhttp=new XMLHttpRequest()
+    xhttp.open("GET","http://localhost:3000/user/fetchsubcat?catnm="+catnm,true)
+    xhttp.send()
+
+    xhttp.onreadystatechange=function(){
+        if(xhttp.status==200 && xhttp.readyState==4)
+        {
+            sclist=JSON.parse(xhttp.responseText)
+            sclist_options="<option>Select sub category</option>"
+            for(let x of sclist)
+                sclist_options+=("<option>"+x.subcatnm+"</option>")
+            document.getElementById("subcategory").innerHTML=sclist_options
+        }
+    }
+}
+
+
+function fetchcity(s)
+{
+    var xhttp=new XMLHttpRequest()
+    xhttp.open("GET","http://localhost:3000/user/fetchcity?s="+s,true)
+    xhttp.send()
+
+    xhttp.onreadystatechange=function(){
+        if(xhttp.status==200 && xhttp.readyState==4)
+        {
+            citylist=JSON.parse(xhttp.responseText)
+            citylist_options="<option>Select city</option>"
+            for(let x of citylist)
+                citylist_options+=("<option>"+x+"</option>")
+            document.getElementById("city").innerHTML=citylist_options
+        }
+    }
+}
+
+function fetchlocality(c)
+{
+    var xhttp=new XMLHttpRequest()
+    xhttp.open("GET","http://localhost:3000/user/fetchlocality?c="+c,true)
+    xhttp.send()
+
+    xhttp.onreadystatechange=function(){
+        if(xhttp.status==200 && xhttp.readyState==4)
+        {
+            localitylist=JSON.parse(xhttp.responseText)
+            localitylist_options="<option>Select locality</option>"
+            for(let x of localitylist)
+                localitylist_options+=("<option>"+x.localityname+"</option>")
+            document.getElementById("locality").innerHTML=localitylist_options
+        }
+    }
+}
+
+
+</script>
+
+<!-- main section starts -->
+<div id="main">
+
+  <section id="contact">
+    <div class="container mt-5">
+
+      <div class="section-header mt-5 pb-2">
+        <h3>Add Location Here!!!</h3>
+      </div>
+
+      <div class="row wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;">
+
+        <div class="col-lg-12 shadow py-5 px-4 rounded-md border border-primary border-right-0 border-bottom-0 border-left-0">
+          <form method="post" action="" enctype="multipart/form-data">
+            <div class="form-row">
+              <div class="form-group col-lg-4">
+                <label>Title</label>
+                <input class="form-control" type="text" name="title" placeholder="Enter location title" />
+              </div>
+              <div class="form-group col-lg-4">
+                <label>Category</label>
+                <select class="form-control" name="category" onchange="fetchsubcat(this.value)">
+                  <option>Select category</option>
+                  <% for(let row of categories) { %>
+                    <option value="<%= row.catnm%>"><%= row.catnm%></option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="form-group col-lg-4">
+                <label>Sub Category</label>
+                <select class="form-control" id="subcategory" name="subcategory">
+                  <option>Select sub category</option>
+                </select>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              
+              <div class="form-group col-lg-12">
+                <label>Description</label>
+                <textarea class="form-control" name="description" placeholder="Enter location description"></textarea>
+              </div>
+            </div>
+            
+            <div class="form-row">
+              <div class="form-group col-lg-6 mb-0">
+                <label>Location Images | Image 1 : </label>
+                <input class="form-control" type="file" name="file1" required /><br><br>
+              </div>
+              <div class="form-group col-lg-6 mb-0">
+                <label>Location Images | Image 2 : </label>
+                <input class="form-control" type="file" name="file2" /><br><br>
+              </div>
+              <div class="form-group col-lg-6 mb-0">
+                <label>Location Images | Image 3 : </label>
+                <input class="form-control" type="file" name="file3" /><br><br>
+              </div>
+              <div class="form-group col-lg-6 mb-0">
+                <label>Location Images | Image 4 : </label>
+                <input class="form-control" type="file" name="file4" />
+              </div>
+              <div class="form-group col-lg-12">
+                <label>Address</label>
+                <textarea class="form-control" name="address" placeholder="Enter location address"></textarea>
+              </div>
+            </div>
+           
+            <div class="form-row">
+              <div class="form-group col-lg-4">
+                <label>State</label>
+                <select class="form-control" name="state">
+                  <option>Select state</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-4">
+                <label>City</label>
+                <select class="form-control" name="city" id="city">
+                  <option>Select city</option>
+                </select>
+              </div>
+              <div class="form-group col-lg-4">
+                <label>Locality</label>
+                <select class="form-control" name="locality" id="locality">
+                  <option>Select locality</option>
+                </select>
+              </div>
+            </div>
+            
+           
+           
+            <input class="btn btn-primary" type="submit" name="s" value="Enter Location" />
+          </form>
+        </div>
+      </div>
+  </section>
+</div>
+
+<!-- main section ends -->
+
+<% include footer %>
